@@ -1,0 +1,55 @@
+
+name = Gambit
+description = Cedar Rapids Jaycees default theme
+package = Core
+version = VERSION
+core = 7.x
+
+stylesheets[all][] = css/application.css
+
+regions[header] = Header
+regions[help] = Help
+regions[page_top] = Page top
+regions[page_bottom] = Page bottom
+regions[highlighted] = Highlighted
+
+regions[featured] = Featured
+regions[content] = Content
+regions[sidebar_first] = Sidebar first
+regions[sidebar_second] = Sidebar second
+
+regions[triptych_first] = Triptych first
+regions[triptych_middle] = Triptych middle
+regions[triptych_last] = Triptych last
+
+regions[footer_firstcolumn] = Footer first column
+regions[footer_secondcolumn] = Footer second column
+regions[footer_thirdcolumn] = Footer third column
+regions[footer_fourthcolumn] = Footer fourth column
+regions[footer] = Footer
+
+; Stylesheets blocked that are not included in application.css
+;stylesheets[all][] = ctools.css
+;stylesheets[all][] = field.css
+;stylesheets[all][] = node.css
+;stylesheets[all][] = search.css
+;stylesheets[all][] = system.base.css
+;stylesheets[all][] = system.theme.css
+;stylesheets[all][] = system.menus.css
+;stylesheets[all][] = system.messages.css
+;stylesheets[all][] = user.css
+;stylesheets[all][] = views.css
+
+; Stylesheets blocked that are included in application.css
+;stylesheets[all][] = comment.css
+;stylesheets[all][] = date.css
+;stylesheets[all][] = jquery.ui.core.css
+;stylesheets[all][] = jquery.ui.theme.css
+;stylesheets[all][] = overlay-parent.css
+;stylesheets[all][] = overlay-child.css
+;stylesheets[all][] = toolbar.css
+;stylesheets[all][] = panels.css
+;stylesheets[all][] = context_reaction_block.css
+;stylesheets[all][] = shortcut.css
+;stylesheets[all][] = contextual.css
+;stylesheets[all][] = flexslider.css
