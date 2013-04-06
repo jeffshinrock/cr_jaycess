@@ -1,0 +1,9 @@
+www/sites/default/default.settings.php
+www/sites/*/files
+www/sites/*/private
+
+*.tmp
+*.bak
+*.swp
+*~.nib
+.DS_Store
