@@ -10,7 +10,23 @@ foreach ($view->result as $id => $row):
   
   //dpm($node);
   
+  if(!empty($node->field_hero_image_full) && !empty($node->field_hero_image_mobile)){
+    if(!empty($node->field_hero_image_full)){
+      $img_full['path'] = file_create_url($node->field_hero_image_full['und'][0]['uri']);
+      $img_full['attributes'] = array('class' => 'full');
+    }
+    if(!empty($node->field_hero_image_mobile)){
+      $img_mobile['path'] = file_create_url($node->field_hero_image_mobile['und'][0]['uri']);
+      $img_mobile['attributes'] = array('class' => 'mobile');
+    }
+  }
+  
   $slides.= '<li>';
+    $slides .= '<div class="edit-node"><a href="/node/'.$node->nid.'/edit">Edit Node</a></div>';
+    $slides .= '<div class="hero-img">';
+      $slides .= (!empty($img_full) ? theme_image($img_full) : '');
+      $slides .= (!empty($img_mobile) ? theme_image($img_mobile): '');
+    $slides .= '</div>';
     $slides .= $node->body['und'][0]['safe_value'];
   $slides .= '</li>';
 

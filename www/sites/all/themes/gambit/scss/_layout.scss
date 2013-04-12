@@ -1,8 +1,26 @@
 body{
-
+  background: $primary-blue;
+  background: $primary-blue url('../images/back.jpg') no-repeat top center;
+  }
+  
+#top-bar{
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  background: $primary-grey;
+  background: $primary-grey-trans;
+  padding: .3em 0;
+  font-size: .8em;
+  ul{
+    padding: 0 0 0 1em;
+    li{
+      display: inline;
+      }
+    }
   }
   
 #site-wrapper{
-  max-width: 960px;
+  max-width: 1200px;
   margin:0 auto;
   }
