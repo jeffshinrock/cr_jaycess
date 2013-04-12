@@ -1,0 +1,40 @@
+@media (min-width: 0) {
+  .mobile{ display: block; }
+  .full{ display: none; }
+  }
+
+@media (min-width: 700px) {
+  .mobile{ display: none; }
+  .full{ display: block; }  
+  }
+  
+h1,h2,h3,h4,h5,h6{
+  font-family: Arial;
+  }
+  
+body, p{
+  font-family: Arial;
+  color: $text;
+  }
+  
+a:link, a:visited, a:hover, a:active{
+  color: $links;
+  text-decoration: none;
+  font-family: Arial;
+  }
+  
+a:hover{
+  text-decoration: underline;
+  }
+  
+.btn{
+  display: block;
+  padding: .5em 1em;
+  background: $spot;
+  border-radius: 2px;
+  text-align: center; 
+  }
+.btn:hover{
+  text-decoration: none;
+  background: $spot-light;
+  }

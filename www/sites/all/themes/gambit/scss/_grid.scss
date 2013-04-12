@@ -1,0 +1,24 @@
+#grid{
+  .grid.block{
+    float: left;
+    height: 105px;
+    overflow: hidden;
+    width: 160px;
+    background: $accent-blue;
+    img{
+      width: 100%;  
+      }
+    div{
+      padding: .5em;
+      h4{
+        text-transform: uppercase;
+        font-size: .7em;
+        text-align: left;
+        }
+      p{
+        margin: 1em 0;
+        text-align: left;
+        }
+      }
+    }
+  }
