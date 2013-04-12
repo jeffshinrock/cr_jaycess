@@ -1,0 +1,279 @@
+<?php
+/**
+ * @file
+ * Code for the Grid feature.
+ */
+
+include_once 'grid.features.inc';
+
+function grid_permission(){
+  return array(
+    'administer grid' => array(
+      'title' => t('Administer Grid Settings'),
+      'description' => t('Configure grid settings and perma blocks.'),
+    ),
+  );  
+}
+
+function grid_menu(){
+  $items['admin/config/grid'] = array(
+    'title' => 'Grid Config',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('grid_admin_form'),
+    'access arguments' => array('administer grid'),
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+  
+  $items['automplete_grid'] = array(
+    'title' => 'Auto complete for grid admin',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('grid_autocomplete_form'),
+    'access arguments' => array('access content'),
+    'type' => MENU_NORMAL_ITEM
+  );
+  
+  $items['grid/autocomplete'] = array(
+    'title' => 'Grid Autocomplete',
+    'page callback' => 'grid_autocomplete',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK
+  );
+  
+  return $items;
+}
+
+function grid_autocomplete($string = '') {
+  $matches = array();
+  
+  //select from the node table
+  $query = db_select('node', 'n');
+ 
+  // Select rows that match the string
+  $return = $query
+    ->fields('n',array('title','nid'))
+    ->condition('type','grid_item',"=")
+    ->condition('title', '%' . db_like($string) . '%', 'LIKE')
+    ->range(0, 10)
+    ->execute();
+ 
+  // add matches to $matches  
+  foreach ($return as $row) {
+    $matches['[node:'.$row->nid.'] '.$row->title] = check_plain($row->title);
+  }
+  
+  drupal_json_output($matches); //Returns the data in JSON format
+}
+
+function grid_autocomplete_form(){
+    $form = array();
+    $form['testauto'] = array(
+        '#type' => 'textfield',
+        '#autocomplete_path' => 'test/autocomplete',
+        '#description' => t('Please type any letter.'),
+    );
+    return $form;
+}
+
+function grid_admin_form($node, &$form_state){
+
+  $form = array();
+
+  $rows = array();
+  for($i=0; $i<11; $i++){
+    $rows[$i] = $i;  
+  }
+  
+  $form['grid_rows'] = array(
+    '#type' => 'select',
+    '#title' => 'Number of grid rows (2 per row)',
+    '#default_value' => variable_get('grid_rows',''),
+    '#required' => TRUE,
+    '#options' => $rows,
+  );
+  
+  $form['grid_permablock1'] = array(
+    '#type' => 'textfield',
+    '#autocomplete_path' => 'grid/autocomplete',
+    '#description' => t('Permanent block 1 in grid.'),
+    '#default_value' => get_nice_name(variable_get('grid_permablock1','')),
+  );
+  
+  $form['grid_permablock2'] = array(
+    '#type' => 'textfield',
+    '#autocomplete_path' => 'grid/autocomplete',
+    '#description' => t('Permanent block 2 in grid.'),
+    '#default_value' => get_nice_name(variable_get('grid_permablock2','')),
+  );
+  
+  $form['grid_permablock3'] = array(
+    '#type' => 'textfield',
+    '#autocomplete_path' => 'grid/autocomplete',
+    '#description' => t('Permanent block 3 in grid.'),
+    '#default_value' => get_nice_name(variable_get('grid_permablock3','')),
+  );
+  
+  $form['grid_permablock4'] = array(
+    '#type' => 'textfield',
+    '#autocomplete_path' => 'grid/autocomplete',
+    '#description' => t('Permanent block 4 in grid.'),
+    '#default_value' => get_nice_name(variable_get('grid_permablock4','')),
+  );
+  
+  $form['#validate'][] = 'grid_admin_form_validate';
+  
+  return system_settings_form($form);
+  
+}
+
+function grid_admin_form_validate(&$form, &$form_state){
+
+  $q = db_query("SELECT nid FROM node WHERE type = 'grid_item'")->rowCount();
+  
+  if($form_state['values']['grid_rows'] > $q){
+    form_set_error('grid_rows','There are only ' . $q . ' grid items available. You need ' . intval($form_state['values']['grid_rows']) * 2 . ' grid items to have ' . $form_state['values']['grid_rows']  . ' rows');
+  }
+  
+  if(!empty($form_state['values']['grid_permablock1'])){
+    form_set_value($form['grid_permablock1'],get_nid_from_autocomplete($form_state['values']['grid_permablock1']),$form_state);
+  }
+  if(!empty($form_state['values']['grid_permablock2'])){
+    form_set_value($form['grid_permablock2'],get_nid_from_autocomplete($form_state['values']['grid_permablock2']),$form_state);
+  }
+  if(!empty($form_state['values']['grid_permablock3'])){
+    form_set_value($form['grid_permablock3'],get_nid_from_autocomplete($form_state['values']['grid_permablock3']),$form_state);
+  }
+  if(!empty($form_state['values']['grid_permablock4'])){
+    form_set_value($form['grid_permablock4'],get_nid_from_autocomplete($form_state['values']['grid_permablock4']),$form_state);
+  }
+  
+  //dpm($form_state);
+  
+}
+
+function get_nice_name($nid){
+
+  if(!empty($nid)){
+    $q = db_query("SELECT title, nid FROM node WHERE nid = :nid", array(":nid" => $nid))->fetchObject();
+    return '[node:'.$q->nid.'] '.$q->title;
+  } else {
+    return NULL;
+  }
+}
+
+function get_nid_from_autocomplete($input){
+  $txt=$input;
+
+  $re1='.*?';	# Non-greedy match on filler
+  $re2='(\\d+)';	# Integer Number 1
+
+  if ($c=preg_match_all ("/".$re1.$re2."/is", $txt, $matches))
+  {
+      $int1=$matches[1][0];
+      return $int1;
+  }
+}
+
+function grid_preprocess_node(&$vars, $hook){
+
+}
+
+function grid_preprocess_page(&$vars, $hook){
+  $vars['grid'] = get_grid_items();
+}
+
+function grid_form_alter(&$form, &$form_state, $form_id){
+
+}
+
+function get_grid_items(){
+
+  $limit = intval(variable_get('grid_rows','0')) * 2;
+
+  $grid = array();
+  
+  $conditionals = array();
+
+  if(variable_get('grid_permablock1')){
+    $grid[] = variable_get('grid_permablock1');
+    $conditionals[] = "nid <> " . variable_get('grid_permablock1');
+    $limit--;
+  }
+  
+  if(variable_get('grid_permablock2')){
+    $grid[] = variable_get('grid_permablock2');
+    $conditionals[] = "nid <> " . variable_get('grid_permablock2');
+    $limit--;
+  }
+  
+  if(variable_get('grid_permablock3')){
+    $grid[] = variable_get('grid_permablock3');
+    $conditionals[] = "nid <> " . variable_get('grid_permablock3');
+    $limit--;
+  }  
+  
+  if(variable_get('grid_permablock4')){
+    $grid[] = variable_get('grid_permablock4');
+    $conditionals[] = "nid <> " . variable_get('grid_permablock4');
+    $limit--;
+  }
+  
+  $conditionals = implode(" AND ", $conditionals);
+  
+  if(!empty($conditionals)){
+    $conditionals = " AND " . $conditionals;
+  }
+  
+  $result = db_query("SELECT nid FROM node WHERE type = 'grid_item' ".$conditionals." ORDER BY RAND() LIMIT " . $limit); 
+  
+  foreach($result as $item){
+    $grid[] = $item->nid;
+  }
+  
+  shuffle($grid);
+  
+  $markup = '<div id="grid">';
+  
+  foreach($grid as $nid){
+    $markup .= grid_markup($nid);
+  }
+  
+  $markup .= "</div>";
+  
+  return $markup;
+  
+}
+
+function grid_markup($item){
+  
+  $item = node_load($item);
+  
+  $html = '<div class="grid block">';
+  
+  if($item->field_grid_type['und'][0]['value'] == "Image"){
+    if(!empty($item->field_grid_image['und'][0]['uri'])){
+      $img['path'] = file_create_url($item->field_grid_image['und'][0]['uri']);
+      $img['attributes'] = array('class' => 'item');
+      $html .= theme_image($img);
+    }
+  } elseif($item->field_grid_type['und'][0]['value'] == "CTA"){
+    $html .= "<div>";
+      $html .= $item->body['und'][0]['safe_value'];
+    $html .= "</div>";
+  } elseif($item->field_grid_type['und'][0]['value'] == "Award" || $item->field_grid_type['und'][0]['value'] == "Fact") {
+    $html .= "<div>";
+      $html .= "<h4>".$item->field_grid_type['und'][0]['value']."</h4>";
+      $html .= $item->body['und'][0]['safe_value'];
+    $html .= "</div>";
+  } else {
+    $html .= "<div>";
+      $html .= $item->body['und'][0]['safe_value'];
+    $html .= "</div>";
+  }
+
+  $html .= '</div>';
+  
+  return $html;
+  
+}
+
+
