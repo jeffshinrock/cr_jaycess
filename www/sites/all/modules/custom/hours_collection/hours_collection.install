@@ -1,0 +1,52 @@
+<?php
+
+function hours_collection_schema() {
+
+$schema['hours_collection'] = array(
+  'description' => 'Hours collection for member events',
+  'fields' => array(
+    'id' => array(
+      'description' => 'Unique identifier for table',
+      'type' => 'serial',
+      'unsigned' => TRUE,
+      'not null' => TRUE,  
+    ),
+    'uid' => array(
+      'description' => 'User ID of member logging hours.',
+      'type' => 'int',
+      'unsigned' => TRUE,
+      'not null' => TRUE,
+    ),
+    'hours' => array(
+      'description' => 'Hours Logged',
+      'type' => 'int',
+      'not null' => TRUE,
+      'unsigned' => TRUE,
+    ),
+    'event' => array(
+      'description' => 'The event the hours are associated with',
+      'type' => 'varchar',
+      'length' => 255,
+      'default' => '',
+    ),
+    'timestamp' => array(
+      'description' => 'Timestamp of hours logged',
+      'type' => 'varchar',
+      'length' => 255,
+      'default' => '',    
+    ),
+    'ruid' => array(
+      'description' => 'Reference UID of person submitting',
+      'type' => 'int',
+      'unsigned' => TRUE,    
+    ),
+  ),
+  'primary key' => array('id'),
+  'indexes' => array(
+    'type' => array('uid', 'event'),
+  ),
+);
+
+return $schema;
+
+}

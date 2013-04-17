@@ -1,0 +1,6 @@
+name = Hours Collection
+core = 7.x
+package = Jaycees
+version = 7.x-1.0
+description = If enabled, when members register for events, their hours will be tracked.
+

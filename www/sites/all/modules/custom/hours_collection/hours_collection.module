@@ -1,0 +1,25 @@
+<?php
+
+function hours_collection_node_insert($node){
+  
+  if($node->type == 'event_registration'){
+  
+    global $user;
+    
+    $meeting = node_load($node->field_register_meeting_reference['und'][0]['value']);
+    
+    $record = array (
+      "uid" => $user->uid,
+      "hours" => $meeting->field_hours_available['und'][0]['value'],
+      "event" => $meeting->title ."-".$meeting->field_start_date['und'][0]['value'],
+      "timestamp" => time(),
+      );
+  
+    drupal_write_record('hours_collection', $record);
+  
+  }
+}
+
+function hours_collection_preprocess_node(&$node, $hook){
+  //dd($node);
+}
