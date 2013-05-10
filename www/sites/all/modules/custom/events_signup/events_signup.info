@@ -1,0 +1,6 @@
+name = Events Signup
+core = 7.x
+package = Jaycees
+version = 7.x-1.0
+description = Events and Signup helper module
+

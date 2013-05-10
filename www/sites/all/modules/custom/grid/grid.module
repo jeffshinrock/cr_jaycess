@@ -247,7 +247,7 @@ function grid_markup($item){
   
   $item = node_load($item);
   
-  $html = '<div class="grid block">';
+  $html = '<div class="grid block"><div class="grid-block-inner">';
   
   if($item->field_grid_type['und'][0]['value'] == "Image"){
     if(!empty($item->field_grid_image['und'][0]['uri'])){
@@ -270,7 +270,7 @@ function grid_markup($item){
     $html .= "</div>";
   }
 
-  $html .= '</div>';
+  $html .= '</div></div>';
   
   return $html;
   

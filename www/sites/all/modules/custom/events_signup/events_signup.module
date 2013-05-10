@@ -1,0 +1,68 @@
+<?php
+
+function events_signup_menu(){
+  $items = array();
+  
+  $items['event/signup/%'] = array(
+    'title' => 'Signup',
+    'description' => 'Signup for an event',
+    'page callback' => 'events_signup_display',
+    'page arguments' => array(2),
+    'access callback' => array(1),
+    'type' => MENU_CALLBACK,
+  );
+  
+  $items['event/registration/%'] = array(
+    'title' => 'Registration',
+    'description' => 'Signup for an event',
+    'page callback' => 'events_signup_display',
+    'page arguments' => array(2),
+    'access arguments' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  
+  return $items;
+}
+
+function events_signup_display($nid){
+
+  $form = events_signup_form();
+    
+  //dpm($form);
+  
+  return $form;
+  
+}
+
+function events_signup_form(){
+  
+  module_load_include('inc', 'node', 'node.pages');
+  
+  $form = node_add('event_registration');
+  $output = drupal_render($form);
+  
+  return $output;
+  
+}
+
+function events_signup_form_alter(&$form, &$form_state, $form_id){
+  if($form_id == 'event_registration_node_form'){
+  
+    global $user;
+  
+    $form['event_id'] = array(
+      '#type' => 'value',
+      '#value' => arg(2),
+    );
+    
+    $form['uid_id'] = array(
+      '#type' => 'value',
+      '#value' => $user->uid,
+    );
+    
+    unset($form['body']);
+    
+    drupal_set_title('test');
+  
+  }
+}

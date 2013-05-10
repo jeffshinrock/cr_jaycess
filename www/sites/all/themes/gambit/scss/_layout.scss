@@ -3,6 +3,10 @@ body{
   background: $primary-blue url('../images/back.jpg') no-repeat top center;
   }
   
+#main-content{
+  width: 880px;
+}
+  
 #top-bar{
   position: absolute;
   top: 0;

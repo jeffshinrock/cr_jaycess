@@ -2,7 +2,6 @@
 
 //dpm($page);
 
-
 ?>
 
 <div id="top-bar">
@@ -38,29 +37,38 @@
     </div>   
   <?php endif; ?>
   
-    <?php if ($messages): ?>
-      <div id="messages">
-        <div class="section clearfix">
-          <?php print $messages; ?>
-        </div>
-      </div> <!-- /.section, /#messages -->
+    <?php if ($tabs): ?>
+      <div class="tabs">
+        <?php print render($tabs); ?>
+      </div>
     <?php endif; ?>
-    
-    <?php if ($page['content']): ?>
-      <div id="content-wrapper">
-        <div class="section clearfix">
-          <?php print render($page['content']); ?>
-        </div>
-      </div> <!-- /.section, /#messages -->
-    <?php endif; ?>
-    
-    <?php if ($page['tab_pages']): ?>
-      <div id="tab-pages">
-        <div class="section clearfix">
-          <?php print render($page['tab_pages']); ?>
-        </div>
-      </div> <!-- /.section, /#messages -->
-    <?php endif; ?>
+  
+    <div id="main-content">
+      <?php if ($messages): ?>
+        <div id="messages">
+          <div class="section clearfix">
+            <?php print $messages; ?>
+          </div>
+        </div> <!-- /.section, /#messages -->
+      <?php endif; ?>
+      
+      <?php if ($page['content']): ?>
+        <div id="content-wrapper">
+          <div class="section clearfix">
+            <?php print render($page['content']); ?>
+          </div>
+        </div> <!-- /.section, /#messages -->
+      <?php endif; ?>
+      
+      <?php if ($page['tab_pages']): ?>
+        <div id="tab-pages">
+          <div class="section clearfix">
+            <?php print render($page['tab_pages']); ?>
+          </div>
+        </div> <!-- /.section, /#messages -->
+      <?php endif; ?>
+      
+    </div>
       
   </div>
 </div>

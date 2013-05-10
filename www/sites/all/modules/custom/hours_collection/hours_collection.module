@@ -2,16 +2,16 @@
 
 function hours_collection_node_insert($node){
   
-  if($node->type == 'event_registration'){
-  
-    global $user;
+  if($node->type == 'event_registration' && $node->uid != 0 && $node->field_registration_hours['und'][0]['value'] > 0){
     
-    $meeting = node_load($node->field_register_meeting_reference['und'][0]['value']);
+    $hours = node_load($node->field_registration_hours['und'][0]['value']); 
+    
+    $event = node_load($node->event_id);
     
     $record = array (
-      "uid" => $user->uid,
-      "hours" => $meeting->field_hours_available['und'][0]['value'],
-      "event" => $meeting->title ."-".$meeting->field_start_date['und'][0]['value'],
+      "uid" => $node->uid_id,
+      "hours" => $hours->field_hours_hours['und'][0]['value'],
+      "event" => $event->title ."-".$event->field_start_date['und'][0]['value'],
       "timestamp" => time(),
       );
   
@@ -22,4 +22,59 @@ function hours_collection_node_insert($node){
 
 function hours_collection_preprocess_node(&$node, $hook){
   //dd($node);
+}
+
+function hours_collection_form_alter(&$form, &$form_state,$form_id){
+
+  if($form_id == 'volunteer_hours_node_form'){
+    //dpm($form);
+    $now = date('now');
+    //dpm($now);
+    unset($form['body']);
+    $result = db_query("SELECT n.nid, n.title, d.field_start_date_value
+                        FROM node n 
+                        	JOIN field_data_field_start_date d
+                        	ON d.entity_id = n.nid
+                        WHERE n.type = 'event' 
+                        	AND n.status = 1");
+                        	                        	
+  	$events = array();
+  	foreach($result as $event){
+    	$events[$event->nid] = $event->title . ' - ' . $event->field_start_date_value;
+  	}
+  	
+  	$form['field_associated_event']['und']['#options'] = $events;
+  }
+  
+  if($form_id == 'event_registration_node_form'){
+  
+    global $user;
+      
+      if(is_numeric(arg(2))){
+        $result = db_query("SELECT ae.entity_id, n.title, n.nid
+                            FROM field_data_field_associated_event ae
+                            	JOIN node n on n.nid = ae.entity_id
+                            WHERE ae.field_associated_event_value = ".arg(2));
+                            	                        	
+      	$hours = array();
+      	$hours[0] = "None";
+      	foreach($result as $hour){
+        	$hours[$hour->nid] = $hour->title;
+      	}
+      	
+      	$event = node_load(arg(2));
+      	
+      	$form['field_registration_hours']['und']['#options'] = $hours;
+      	$form['title']['#disabled'] = TRUE;
+      	$form['title']['#value'] = $event->title . ' - Registration ' . date('m/d/Y H:i:s',strtotime('now'));
+      }
+    
+    if($user->uid == 0){
+      
+      unset($form['field_registration_hours']);
+      
+    }
+  
+  }
+
 }
