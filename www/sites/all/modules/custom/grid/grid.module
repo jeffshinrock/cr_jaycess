@@ -16,12 +16,11 @@ function grid_permission(){
 }
 
 function grid_menu(){
-  $items['admin/config/grid'] = array(
+  $items['admin/config/jaycees/grid'] = array(
     'title' => 'Grid Config',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('grid_admin_form'),
     'access arguments' => array('administer grid'),
-    'type' => MENU_DEFAULT_LOCAL_TASK,
   );
   
   $items['automplete_grid'] = array(
