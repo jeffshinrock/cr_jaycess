@@ -1,0 +1,10 @@
+name = Jaycees User Management
+core = 7.x
+package = Jaycees
+version = 7.x-1.0
+description = User management for Jaycess members.
+configure = admin/config/jaycees/users
+dependencies[] = jaycees_controller
+files[] = jaycees_user.admin.inc
+files[] = jaycees_users.cron.inc
+files[] = jaycees_users.forms.inc

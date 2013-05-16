@@ -1,0 +1,129 @@
+<?php
+
+include_once(drupal_get_path('module','jaycees_users') . '/jaycees_users.forms.inc');
+include_once(drupal_get_path('module','jaycees_users') . '/jaycees_users.cron.inc');
+
+function jaycees_users_permission() {
+
+  $perms = array();
+  
+  $perms['administer jaycees users settings'] = array(
+    'title' => t('Administer Jaycess members'),
+    'description' => t('Administer user options for Jaycees members.'),
+  );
+  
+  $perms['administer jaycees users dues'] = array(
+    'title' => t('Administer Jaycess members dues'),
+    'description' => t('Administer user dues for Jaycees members.'),
+  );
+  
+  $perms['view jaycees user information'] = array(
+    'title' => t('View Jaycess members information'),
+    'description' => t('View admin fields for Jaycees members.'),
+  );
+  
+  return $perms;
+}
+
+function jaycees_users_admin_paths() {
+  $paths = array(
+    'user/*/dues' => TRUE, 
+  );
+  return $paths;
+}
+
+function jaycees_users_menu(){
+  $items = array();
+  
+  $items['admin/config/jaycees/users'] = array(
+    'title' => 'Jaycees Users Options',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('jaycees_users_admin_form'),
+    'access arguments' => array('administer jaycees users settings'),
+    'file' => 'jaycees_users.admin.inc',
+  );
+  
+  if(variable_get('jaycees_users_dues_dates')){
+    $items['user/%user/dues'] = array(
+      'title' => t('Membership Dues'),
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('jaycees_users_dues'),
+      'access arguments' => array('administer jaycees users dues'),
+      'type' => MENU_LOCAL_TASK,
+    );   
+    
+    $items['admin/config/jaycees/user_report'] = array(
+      'title' => t('Jaycees Dues Report'),
+      'page callback' => 'jaycees_users_report',
+      'access arguments' => array('administer jaycees users dues'),
+      'weight' => 100,
+    );     
+  }
+        
+    return $items;
+  
+  return $items;
+}
+
+
+function jaycees_users_form_alter(&$form, $form_state, $form_id){
+  //dpm($form_id);
+
+  //include javascript on jaycees users admin form
+  if($form_id == 'jaycees_users_admin_form'){
+     $form['jaycees_users_dues_dates']['#after_build'] = array('_load_jaycees_users_javascript');
+   }
+}
+
+function _load_jaycees_users_javascript($element){
+  drupal_add_js(drupal_get_path('module', 'jaycees_users'). '/js/jaycees_users.js');
+  return($element);
+}
+
+function jaycees_users_preprocess_page(&$vars){
+  if(variable_get('jaycees_users_alert')){
+  
+    global $user;
+    
+    $last_collected = db_query("SELECT dues_date FROM jaycees_users_dues WHERE uid = :uid ORDER BY dues_date DESC",array(':uid' => $user->uid))->fetchObject();  
+    
+    $int = strtotime(date("m/j/Y", $last_collected->dues_date) . ' +' . variable_get('jaycees_users_dues_timeframe') . ' days');      
+    
+    if($int < strtotime('now')){
+      drupal_set_message('Your dues are out of date.','warning');
+    }
+  }
+}
+
+function jaycees_users_report(){
+  $result = db_query('SELECT u.uid, u.name, u.mail, jur.current
+            FROM users u
+            JOIN jaycees_users_records jur
+            	ON u.uid = jur.uid
+            WHERE jur.current = 0
+            ');
+  $headers = array(
+      
+    'Name',
+    'Mail',
+    'Past Due',
+  );
+  
+  $rows = array();
+            
+  foreach($result as $user){
+    $rows[$user->uid] = array(
+      'name' => l($user->name, 'user/' . $user->uid . '/dues'),
+      'mail' => $user->mail,
+      'past_due' => (empty($user->current)) ? "Past Due" : "Current",
+    );
+  }
+
+  $vars['header'] = $headers;
+  $vars['rows'] = $rows;
+  $vars['attributes'] = array();
+  
+  return theme('table',$vars);
+}
+
+

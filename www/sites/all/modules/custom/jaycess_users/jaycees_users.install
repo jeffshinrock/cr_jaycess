@@ -1,0 +1,100 @@
+<?php
+
+function jaycees_users_schema() {
+
+$schema['jaycees_users_dues'] = array(
+  'description' => 'Hours collection for member events',
+  'fields' => array(
+    'id' => array(
+      'description' => 'Id of table.',
+      'type' => 'serial',
+      'unsigned' => TRUE,
+      'not null' => TRUE,
+    ),
+    'uid' => array(
+      'description' => 'User ID of member.',
+      'type' => 'int',
+      'unsigned' => TRUE,
+      'not null' => TRUE,
+    ),
+    'dues_date' => array(
+      'description' => 'Dues date for member',
+      'type' => 'varchar',
+      'length' => 255,
+      'default' => '',
+    ),
+    'payment_method' => array(
+      'description' => 'Payment method',
+      'type' => 'varchar',
+      'length' => 255,
+    ),
+    'payment_value' => array(
+      'description' => 'Payment value',
+      'type' => 'varchar',
+      'length' => 255,
+    ),
+    'dues_date_year' => array(
+      'description' => 'Year dues were paid',
+      'type' => 'varchar',
+      'length' => 255,
+      'default' => '',
+    ),
+    'past_due' => array(
+      'description' => 'Dues current for user?',
+      'type' => 'int',
+      'unsigned' => TRUE,
+    ),
+  ),
+  'primary key' => array('id'),
+  'indexes' => array(
+    'type' => array('id','uid','dues_date'),
+  ),
+);
+
+$schema['jaycees_users_records'] = array(
+  'description' => 'Hours collection for member events',
+  'fields' => array(
+    'uid' => array(
+      'description' => 'User ID of member.',
+      'type' => 'int',
+      'unsigned' => TRUE,
+      'not null' => TRUE,
+    ),
+    'current' => array(
+      'description' => 'Is the user current',
+      'type' => 'int',
+      'unsigned' => TRUE,
+      'not null' => TRUE,
+    ),
+  ),
+  'primary key' => array('uid'),
+  'indexes' => array(
+    'type' => array('uid','current'),
+  ),
+);
+
+$schema['jaycees_users_dues_options'] = array(
+  'description' => 'Hours collection for member events',
+  'fields' => array(
+    'id' => array(
+      'description' => 'Id of record.',
+      'type' => 'serial',
+      'unsigned' => TRUE,
+      'not null' => TRUE,
+    ),
+    'value' => array(
+      'description' => 'Dues value',
+      'type' => 'varchar',
+      'unsigned' => TRUE,
+      'not null' => TRUE,
+    ),
+  ),
+  'primary key' => array('id'),
+  'indexes' => array(
+    'type' => array('id','current'),
+  ),
+);
+
+return $schema;
+
+}
