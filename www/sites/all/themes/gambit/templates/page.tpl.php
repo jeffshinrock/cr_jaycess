@@ -19,7 +19,7 @@
   </div> <!-- /.section, /#messages -->
 <?php endif; ?>
 
-<div id="site-wrapper">
+<div id="site-wrapper" class="clearfix">
   <div id="container">
   
   <?php if(!drupal_is_front_page()): ?>
