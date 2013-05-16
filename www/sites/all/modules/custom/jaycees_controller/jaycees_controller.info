@@ -1,0 +1,6 @@
+name = Controller
+core = 7.x
+package = Jaycees
+version = 7.x-1.0
+description = API & configuration settings for various services
+configure = admin/config/jaycees/controller
