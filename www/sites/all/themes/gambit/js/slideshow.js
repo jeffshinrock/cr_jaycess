@@ -1,13 +1,17 @@
 (function($){
 
-  function setSliderText(test){
-    
+  function setSliderText(){
+    $text = $("#home-slider .flex-active-slide .hero-text").html();
+    console.log($text);
+    $('#slider-message').fadeOut(200, function(){
+      $(this).html($text).fadeIn(200);
+    });
   }
   
   $(document).ready(function(){
   
     $text = $("#home-slider ul li .hero-text").each(function(){
-      console.log($(this).html());
+      //console.log($(this).html());
     });
     
     //home page carousel
@@ -16,6 +20,12 @@
       selector: "#home-slides > li",
       slideshow: true,
       slideshowSpeed: 7000, 
+      controlNav: true,
+      directionNav: false, 
+      controlsContainer: "#flex-control-nav",
+      after: function(slider){
+        setSliderText();
+      }
     });  
     
     //tab page carousel

@@ -10,11 +10,23 @@
   
 h1,h2,h3,h4,h5,h6{
   font-family: Arial;
+  margin: .5em 0;
+  font-family: "hero";
+  color: $light;
+  }
+  
+h1{
+  font-size: 3em;
   }
   
 body, p{
   font-family: Arial;
   color: $text;
+  line-height: 1.4;
+  }
+  
+p{
+  margin: .5em 0;
   }
   
 a:link, a:visited, a:hover, a:active{

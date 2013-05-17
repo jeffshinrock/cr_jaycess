@@ -25,9 +25,9 @@
   <?php if(!drupal_is_front_page()): ?>
     <div id="right-bar">
       <div id="logo">
-        <img src="/<?php print drupal_get_path('theme','gambit')?>/images/logo.png" />
+        <a href="/"><img src="/<?php print drupal_get_path('theme','gambit')?>/images/logo.png" /></a>
       </div>
-      <div id="menu-container">
+      <div id="main-menu-container">
         <?php $menu = menu_tree('main-menu'); ?>
         <?php print drupal_render($menu); ?>
       </div>
@@ -38,7 +38,7 @@
   <?php endif; ?>
   
     <?php if ($tabs): ?>
-      <div class="tabs">
+      <div class="tabs clearfix">
         <?php print render($tabs); ?>
       </div>
     <?php endif; ?>
@@ -55,6 +55,7 @@
       <?php if ($page['content']): ?>
         <div id="content-wrapper">
           <div class="section clearfix">
+            <h1><?php print $title; ?></h1>
             <?php print render($page['content']); ?>
           </div>
         </div> <!-- /.section, /#messages -->

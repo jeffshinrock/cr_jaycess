@@ -7,6 +7,9 @@ core = 7.x
 
 stylesheets[all][] = css/application.css
 
+scripts[] = js/menu.js
+scripts[] = js/jquery.animate-colors.min.js
+
 regions[header] = Header
 
 regions[hero] = Hero

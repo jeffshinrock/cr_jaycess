@@ -9,8 +9,16 @@
 ?>
   
   <?php $slides = ''; ?>
+  <?php $control_nav = ''; ?>
+  <?php $i = 1; ?>
   
   <?php foreach ($view->result as $id => $row): 
+  
+    dpm($row);
+  
+    if($i == 1){
+      $initial_text = $row->field_body[0]['raw']['safe_value'];
+    }
   
     if(!empty($row->field_field_hero_image_full) && !empty($row->field_field_hero_image_mobile)){
       if(!empty($row->field_field_hero_image_full)){
@@ -24,7 +32,7 @@
     }  
     
     if(!empty($row->field_field_call_to_action)){
-      $cta = '<div class="btn">' . $row->field_field_call_to_action . '</div>';
+      $cta = '<div class="btn">' . l("Learn More", $row->field_field_call_to_action[0]['raw']['value']) . '</div>';
     }
   
     $slides .= '<li class="slide">';
@@ -37,6 +45,10 @@
           $slides .= (!empty($cta) ? $cta : '');
         $slides .= '</div>';
     $slides .= '</li>';
+    
+    $control_nav .= "<li><a>$i</a></li>";
+    
+    $i++;
   
   endforeach; ?>
   
@@ -45,14 +57,16 @@
   <div id="hero-inner">
     <div id="right-bar">
       <div id="logo">
-        <img src="/<?php print drupal_get_path('theme','gambit')?>/images/logo.png" />
+        <a href="/"><img src="/<?php print drupal_get_path('theme','gambit')?>/images/logo.png" /></a>
       </div>
-      <div id="menu-container">
+      <div id="main-menu-container">
         <?php $menu = menu_tree('main-menu'); ?>
         <?php print drupal_render($menu); ?>
       </div>
       <div id="slider-message">
-        
+        <?php print $initial_text; ?>
+      </div>
+      <div id="flex-control-nav">
       </div>
     </div>
   </div>

@@ -6,10 +6,11 @@
   margin-top: -1em;
   text-align: center;
   padding: 2em 0;
+  border-bottom: 1px solid $light;
   #logo{
     padding: 0 0 2em 0;
-    border-bottom: 1px solid #fff;
-    border-bottom: 1px solid rgba(255,255,255,.2);
+    border-bottom: 1px solid $light;
+    border-bottom: 1px solid $light-trans;
     }
   #menu-container{
     padding: 1em;

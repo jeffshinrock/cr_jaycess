@@ -1,0 +1,20 @@
+#main-menu-container{
+  border-bottom: 1px solid $light-trans;
+  ul{
+    padding: 1em 0;
+    margin: 0;
+    list-style-type: none;
+    list-style-image: none;    
+    li.leaf{
+      padding: 0 0 0 1em;
+      list-style-type: none;
+      list-style-image: none;   
+      a:link, a:visited, a:hover, a:active{
+        color: $light;
+        font-family: "hero-light";  
+        font-size: 2em;
+        text-decoration: none;  
+        }
+      }
+    }
+  }

@@ -47,3 +47,31 @@
     width: 100%;
     }
   }
+  
+#flex-control-nav{
+  margin: 1em 0 .5em;
+  li{
+    display: inline-block;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    margin-left: .5em;
+    a{
+      height: 18px;
+      text-indent: -999em;
+      display: block;
+      background: transparent url('../images/slider-nav.png') no-repeat center -18px;
+      }
+    a.flex-active{
+      background: transparent url('../images/slider-nav.png') no-repeat center top;
+      }
+    }
+  }
+  
+#slider-message{
+  .btn{
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 1em;
+    }
+  }

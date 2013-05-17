@@ -1,0 +1,26 @@
+.tabs{
+  width: 875px;
+  height: 2em;
+  ul.primary{
+    border-color: $primary-grey;
+    border-color: $primary-grey-trans;
+    padding: .3em 0;
+    li{
+      a{
+        padding: .3em 1em;
+        border-radius: 2px 2px 0px 0px;
+        border: 1px solid $primary-grey;
+        background: $primary-grey;
+        background: $primary-grey-trans;
+        color: #fff;
+        }
+      a.active{
+        background: $spot;
+        }
+      }
+    }
+  }
+  
+#messages{
+  float: left;
+  }
