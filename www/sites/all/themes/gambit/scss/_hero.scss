@@ -1,7 +1,7 @@
 #hero-container{
   z-index: 10;
   position: absolute;
-  top: 1.2em;
+  top: 1em;
   width: 100%;
   #hero-inner{
     max-width: 1200px;
@@ -69,6 +69,10 @@
   }
   
 #slider-message{
+  p{
+    padding: 0 1em;
+    color: $light;
+    }
   .btn{
     width: 50%;
     margin: 0 auto;

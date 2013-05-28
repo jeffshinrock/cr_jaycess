@@ -2,7 +2,6 @@
 
   function setSliderText(){
     $text = $("#home-slider .flex-active-slide .hero-text").html();
-    console.log($text);
     $('#slider-message').fadeOut(200, function(){
       $(this).html($text).fadeIn(200);
     });
@@ -12,6 +11,8 @@
   
     $text = $("#home-slider ul li .hero-text").each(function(){
       //console.log($(this).html());
+      $(this).hide();
+      console.log($(this));
     });
     
     //home page carousel

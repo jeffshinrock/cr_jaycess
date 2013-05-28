@@ -81,7 +81,8 @@ function _load_jaycees_users_javascript($element){
 }
 
 function jaycees_users_preprocess_page(&$vars){
-  if(variable_get('jaycees_users_alert')){
+  global $user;
+  if(variable_get('jaycees_users_alert') && $user->uid > 0){
   
     global $user;
     

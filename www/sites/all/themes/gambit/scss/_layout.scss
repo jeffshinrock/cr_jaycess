@@ -12,18 +12,23 @@ body{
 }
   
 #top-bar{
-  position: absolute;
   top: 0;
   z-index: 10;
   width: 100%;
   background: $primary-grey;
   background: $primary-grey-trans;
-  padding: .3em 0;
   font-size: .8em;
   ul{
-    padding: 0 0 0 1em;
+    padding-left: 1em;
     li{
-      display: inline;
+      display: inline-block;
+      border: 1px solid $light-trans;
+      border-width: 0 1px 0 0;
+      a{
+        display: block;
+        padding: .3em 1em;
+        height: 100%;
+        }
       }
     }
   }
@@ -31,5 +36,5 @@ body{
 #site-wrapper{
   max-width: 1200px;
   margin:0 auto;
-  margin-top: 2em;
+  margin-top: 1em;
   }

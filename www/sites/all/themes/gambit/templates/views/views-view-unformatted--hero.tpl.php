@@ -63,10 +63,10 @@
         <?php $menu = menu_tree('main-menu'); ?>
         <?php print drupal_render($menu); ?>
       </div>
+      <div id="flex-control-nav">
+      </div>
       <div id="slider-message">
         <?php print $initial_text; ?>
-      </div>
-      <div id="flex-control-nav">
       </div>
     </div>
   </div>

@@ -75,8 +75,8 @@
 </div>
 
 <?php if ($page['footer']): ?>
-  <div id="messages">
-    <div class="section clearfix">
+  <div id="footer">
+    <div class="section clearfix footer-inner">
       <?php print render($page['footer']); ?>
     </div>
   </div> <!-- /.section, /#messages -->
