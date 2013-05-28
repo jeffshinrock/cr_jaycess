@@ -14,7 +14,7 @@
   
   <?php foreach ($view->result as $id => $row): 
   
-    dpm($row);
+    //dpm($row);
   
     if($i == 1){
       $initial_text = $row->field_body[0]['raw']['safe_value'];
