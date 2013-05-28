@@ -1,6 +1,7 @@
 www/sites/default/default.settings.php
 www/sites/*/files
 www/sites/*/private
+www/sites/default/settings.php
 
 *.tmp
 *.bak
