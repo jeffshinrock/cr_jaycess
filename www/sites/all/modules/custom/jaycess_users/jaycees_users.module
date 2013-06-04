@@ -88,10 +88,18 @@ function jaycees_users_preprocess_page(&$vars){
     
     $last_collected = db_query("SELECT dues_date FROM jaycees_users_dues WHERE uid = :uid ORDER BY dues_date DESC",array(':uid' => $user->uid))->fetchObject();  
     
-    $int = strtotime(date("m/j/Y", $last_collected->dues_date) . ' +' . variable_get('jaycees_users_dues_timeframe') . ' days');      
+    if(!empty($last_collected)){
     
-    if($int < strtotime('now')){
+      $int = strtotime(date("m/j/Y", $last_collected->dues_date) . ' +' . variable_get('jaycees_users_dues_timeframe') . ' days');      
+      
+      if($int < strtotime('now')){
+        drupal_set_message('Your dues are out of date.','warning');
+      }
+    
+    } else {
+      
       drupal_set_message('Your dues are out of date.','warning');
+      
     }
   }
 }
