@@ -28,15 +28,20 @@ function hours_collection_form_alter(&$form, &$form_state,$form_id){
 
   if($form_id == 'volunteer_hours_node_form'){
     //dpm($form);
-    $now = date('now');
+    $now = time('now');
     //dpm($now);
     unset($form['body']);
     $result = db_query("SELECT n.nid, n.title, d.field_start_date_value
                         FROM node n 
-                        	JOIN field_data_field_start_date d
+                      	JOIN field_data_field_start_date d
                         	ON d.entity_id = n.nid
+                      	JOIN field_data_field_include_hour_collection h
+                        	ON h.entity_id = n.nid
                         WHERE n.type = 'event' 
-                        	AND n.status = 1");
+                        	AND n.status = 1
+                        	AND h.field_include_hour_collection_value = 1
+                        	AND UNIX_TIMESTAMP(d.field_start_date_value) > $now");
+                        	
                         	                        	
   	$events = array();
   	foreach($result as $event){
