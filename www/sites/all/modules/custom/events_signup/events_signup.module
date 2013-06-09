@@ -27,8 +27,6 @@ function events_signup_menu(){
 function events_signup_display($nid){
 
   $form = events_signup_form();
-    
-  //dpm($form);
   
   return $form;
   
@@ -39,6 +37,7 @@ function events_signup_form(){
   module_load_include('inc', 'node', 'node.pages');
   
   $form = node_add('event_registration');
+  
   $output = drupal_render($form);
   
   return $output;
@@ -60,9 +59,13 @@ function events_signup_form_alter(&$form, &$form_state, $form_id){
       '#value' => $user->uid,
     );
     
+    $form['field_register_full_name']['#default_value'] = ($user->uid > 0) ? 'test' : '';
+    
     unset($form['body']);
     
-    drupal_set_title('test');
+    $title = node_load(arg(2));
+    
+    drupal_set_title($title->title . " Signup");
   
   }
 }

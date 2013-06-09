@@ -32,9 +32,15 @@
     }  
     
     if(!empty($row->field_field_call_to_action)){
-      $cta = '<div class="btn">' . l("Learn More", $row->field_field_call_to_action[0]['raw']['value']) . '</div>';
+      $title = (empty($row->_field_data['nid']['entity']->field_cta_title)) ? "Learn More" : $row->_field_data['nid']['entity']->field_cta_title['und'][0]['value'];
+      $cta = '<div class="btn">' . l($title, $row->field_field_call_to_action[0]['raw']['value']) . '</div>';
+      if($i == 1){
+        $initial_text .= $cta;
+      }
+    } else {
+      $cta = NULL;
     }
-  
+    
     $slides .= '<li class="slide">';
         $slides .= '<div class="hero-img">';
           $slides .= (!empty($img_full) ? theme_image($img_full) : '');
