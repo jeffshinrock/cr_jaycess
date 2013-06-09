@@ -107,7 +107,11 @@ function grid_field_default_field_instances() {
   // Exported field_instance: 'node-grid_item-field_grid_type'
   $field_instances['node-grid_item-field_grid_type'] = array(
     'bundle' => 'grid_item',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'value' => 'Image',
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -128,7 +132,7 @@ function grid_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_grid_type',
     'label' => 'Grid Type',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'user_register_form' => FALSE,
     ),
