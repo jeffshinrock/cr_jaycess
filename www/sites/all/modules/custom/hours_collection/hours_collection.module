@@ -71,7 +71,7 @@ function hours_collection_form_alter(&$form, &$form_state,$form_id){
       	
       	$node = node_load(arg(2));
       	
-      	if($node->field_include_hour_collection['und'][0]['value']){
+      	if(!empty($node->field_include_hour_collection) && $node->field_include_hour_collection['und'][0]['value']){
         	$form['field_registration_hours']['und']['#options'] = $hours;
       	} else {
         	hide($form['field_registration_hours']);
