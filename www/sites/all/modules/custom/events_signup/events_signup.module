@@ -95,8 +95,32 @@ function events_signup_form_alter(&$form, &$form_state, $form_id){
 
     $form['title']['#prefix'] = $title;
     
+    //if event has a confirmation page, redirect there
+    if(!empty($node->field_event_redirect) && !empty($node->field_event_redirect['und'][0]['value'])){
+      $form['redirect'] = array(
+        '#type' => 'value',
+        '#value' => $node->field_event_redirect['und'][0]['value'],
+      );
+      $form['#submit'][] = 'events_signup_redirect_form';
+    } else {
+      $form['message'] = array(
+        '#type' => 'value',
+        '#value' => "Thank you for registering for " . $node->title . ". We'll see you soon!",
+      );
+      $form['#submit'][] = 'events_signup_message';
+    }
+    
     drupal_set_title('');
   
   }
+}
+
+function events_signup_redirect_form($form, &$form_state){
+  drupal_goto('node/' . $form_state['values']['redirect']);
+}
+
+function events_signup_message($form, &$form_state){
+  drupal_set_message($form_state['values']['message']);
+  drupal_goto('event/signup/' . $form_state['values']['event_id']);
 }
 

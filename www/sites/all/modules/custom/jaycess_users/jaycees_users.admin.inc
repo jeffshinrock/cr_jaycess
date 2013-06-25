@@ -47,7 +47,7 @@ function jaycees_users_admin_form($form, &$form_state){
     '#default_value' => variable_get('jaycees_users_send_mail',0),
   );
   
-  $values = array('1' => t('1 day'), '2' => t('2 days'), '3' => t('3 days'), '7' => t('1 week'), '14' => t('2 weeks'), '21' => t('3 weeks'), '30' => t('1 months'), '60' => t('2 months'));
+  $values = array('1' => t('1 day'), '2' => t('2 days'), '3' => t('3 days'), '7' => t('1 week'), '14' => t('2 weeks'), '21' => t('3 weeks'), '30' => t('1 months'), '60' => t('2 months'), '90' => t('3 months'));
   
   $form['mail']['jaycees_users_send_mail_interval'] = array(
     '#type' => 'checkboxes',
