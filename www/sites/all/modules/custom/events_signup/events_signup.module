@@ -88,7 +88,7 @@ function events_signup_form_alter(&$form, &$form_state, $form_id){
     //set title of form to the event title and date
     $node = node_load(arg(2));
         
-    $title = '<h1>' . $node->title . ' Signup '
+    $title = '<h1>' . $node->title . ' Signup ';
     $title .= (!empty($node->field_event_date)) ? '<div class="date day">' . date('F d, Y',strtotime($node->field_event_date['und'][0]['value'])) . '</div><div class="date time">' . date('g:ia',strtotime($node->field_event_date['und'][0]['value'])) . '</div>' : '';
     
     $title .= '</h1>';
