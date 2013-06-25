@@ -1,12 +1,19 @@
 <?php
 
 function controller_permission(){
-    return array(
-    'administer jaycees controller' => array(
-      'title' => t('Administer Jaycees controller'),
-      'description' => t('Administer Jaycees configurations options.'),
-    ),
+  
+  $items = array();
+
+  $items['administer jaycees controller'] = array(
+    'title' => t('Administer Jaycees controller'),
+    'description' => t('Administer Jaycees configurations options.'),
   );
+  
+  $items['administer jaycees controller'] = array(
+    'title' => t('Administer Jaycees events'),
+    'description' => t('Change event types for events content type'),
+  );
+
 }
 
 function controller_menu(){
@@ -30,10 +37,17 @@ function controller_menu(){
     'access arguments' => array('administer jaycees controller'),
   );
   
+  $items['admin/config/jaycees/event_types'] = array(
+    'title' => 'Jaycees Event Types',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('controller_event_types_form'),
+    'access arguments' => array('administer jaycess events'),
+  );
+  
   return $items;
 }
 
-function controller_admin_form($node, &$form_state){
+function controller_admin_form($form, &$form_state){
   $form = array();
   
   $form['google_maps_api_key'] = array(
@@ -44,4 +58,19 @@ function controller_admin_form($node, &$form_state){
   );
   
   return system_settings_form($form);
+}
+
+function controller_event_types_form($form, &$form_state){
+
+  $form = array();
+  
+  $form['crj_event_types'] = array(
+    '#title' => 'Event Types',
+    '#type' => 'textarea',
+    '#description' => t('Event types when creating an event. Types preceded with a "#" will not appear in the list. Example - #Uptown Friday Nights'),
+    '#default_value' => variable_get('crj_event_types',''),
+  );
+
+  return system_settings_form($form);
+  
 }
