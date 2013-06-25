@@ -16,7 +16,8 @@ function crj_events_form_alter(&$form, &$form_state, $form_id){
     
     foreach($values as $item){
       if(strpos($item,'#') !== 0){
-        $options[strtolower(trim($item))] = $item;
+        $key = preg_replace('/\s+/', '', $item);
+        $options[strtolower(trim($key))] = $item;
       }
     }
     
