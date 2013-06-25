@@ -69,7 +69,14 @@ function hours_collection_form_alter(&$form, &$form_state,$form_id){
       	
       	$event = node_load(arg(2));
       	
-      	$form['field_registration_hours']['und']['#options'] = $hours;
+      	$node = node_load(arg(2));
+      	
+      	if($node->field_include_hour_collection['und'][0]['value']){
+        	$form['field_registration_hours']['und']['#options'] = $hours;
+      	} else {
+        	hide($form['field_registration_hours']);
+      	}
+      	
       	$form['title']['#disabled'] = TRUE;
       	$form['title']['#value'] = $event->title . ' - Registration ' . date('m/d/Y H:i:s',strtotime('now'));
       }

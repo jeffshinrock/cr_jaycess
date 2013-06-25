@@ -48,24 +48,52 @@ function events_signup_form_alter(&$form, &$form_state, $form_id){
   if($form_id == 'event_registration_node_form'){
   
     global $user;
+    
+    //set default values if the user is logged in
+    
+    if($user->uid > 0){
+    
+      $form['field_register_full_name']['und'][0]['value']['#default_value'] = $user->name;
+      
+      $form['uid_id'] = array(
+        '#type' => 'value',
+        '#value' => $user->uid,
+      );
+    
+    }
+    
+    //remove the node options
+    
+    $form['options']['status'] = array(
+      '#type' => 'value',
+      '#value' => '1',
+    );
+    
+    $form['options'] = array(
+      '#type' => 'container',
+      '#title' => '',
+    );
+    
+    hide($form['additional_settings']);
+    
+    //pass event id and user
   
     $form['event_id'] = array(
       '#type' => 'value',
       '#value' => arg(2),
     );
     
-    $form['uid_id'] = array(
-      '#type' => 'value',
-      '#value' => $user->uid,
-    );
-    
-    $form['field_register_full_name']['#default_value'] = ($user->uid > 0) ? 'test' : '';
-    
     unset($form['body']);
     
-    $title = node_load(arg(2));
+    //set title of form to the event title and date
+    $node = node_load(arg(2));
+        
+    $title = '<h1>' . $node->title . ' Signup <div class="date day">' . date('F d, Y',strtotime($node->field_event_date['und'][0]['value'])) . '</div><div class="date time">' . date('g:ia',strtotime($node->field_event_date['und'][0]['value'])) . '</div></h1>';
+
+    $form['title']['#prefix'] = $title;
     
-    drupal_set_title($title->title . " Signup");
+    drupal_set_title('');
   
   }
 }
+
