@@ -150,6 +150,46 @@ Ex: Welch Ave Station, Welch Avenue, Ames, IA 50014 ',
     ),
   );
 
+  // Exported field_instance: 'node-event-field_event_redirect'
+  $field_instances['node-event-field_event_redirect'] = array(
+    'bundle' => 'event',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'If a node ID is present here (ex. 204), users registering for this event will be redirected there after signup is complete.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 7,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_event_redirect',
+    'label' => 'Redirect on registration',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 10,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 8,
+    ),
+  );
+
   // Exported field_instance: 'node-event-field_event_type'
   $field_instances['node-event-field_event_type'] = array(
     'bundle' => 'event',
@@ -282,9 +322,11 @@ Ex: Welch Ave Station, Welch Avenue, Ames, IA 50014 ',
   t('Full address of the event. 
 
 Ex: Welch Ave Station, Welch Avenue, Ames, IA 50014 ');
+  t('If a node ID is present here (ex. 204), users registering for this event will be redirected there after signup is complete.');
   t('If you would like to display a map on this event, check this box');
   t('Include Hour Collection');
   t('Include map');
+  t('Redirect on registration');
 
   return $field_instances;
 }
