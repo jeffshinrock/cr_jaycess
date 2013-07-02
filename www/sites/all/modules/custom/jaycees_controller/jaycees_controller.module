@@ -13,6 +13,8 @@ function controller_permission(){
     'title' => t('Administer Jaycees events'),
     'description' => t('Change event types for events content type'),
   );
+  
+  return $items;
 
 }
 
@@ -41,7 +43,7 @@ function controller_menu(){
     'title' => 'Jaycees Event Types',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('controller_event_types_form'),
-    'access arguments' => array('administer jaycess events'),
+    'access arguments' => array('administer jaycees events'),
   );
   
   return $items;
