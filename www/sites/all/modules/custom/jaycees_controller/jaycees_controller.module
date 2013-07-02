@@ -9,7 +9,7 @@ function controller_permission(){
     'description' => t('Administer Jaycees configurations options.'),
   );
   
-  $items['administer jaycees controller'] = array(
+  $items['administer jaycees events'] = array(
     'title' => t('Administer Jaycees events'),
     'description' => t('Change event types for events content type'),
   );
