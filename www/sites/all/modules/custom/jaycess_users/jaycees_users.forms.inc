@@ -29,7 +29,7 @@ function jaycees_users_dues($form, &$form_state){
     '#type' => 'textfield',
     '#description' => t('Date (for current year) dues are expected'),
     '#default_value' => date("m/j/Y",$due_date),
-    '#disabled' => (user_access('administer jaycees users')) ? FALSE : TRUE,
+    '#disabled' => (user_access('administer jaycees users dues')) ? FALSE : TRUE,
   );
   
   $form['jaycees_users']['dues_date'] = array(
@@ -37,7 +37,7 @@ function jaycees_users_dues($form, &$form_state){
     '#type' => 'textfield',
     '#description' => t('Date that dues were last collected (mm/dd/YYYY)'),
     '#default_value' => (empty($last_collected)) ? 'Never Collected' : date("m/j/Y", $last_collected->dues_date),
-    '#disabled' => (user_access('administer jaycees users')) ? FALSE : TRUE,
+    '#disabled' => (user_access('administer jaycees users dues')) ? FALSE : TRUE,
   );
   
   $vals = variable_get('jaycees_users_collection_values');
@@ -51,7 +51,7 @@ function jaycees_users_dues($form, &$form_state){
     '#title' => t('Dues Amount Collected'),
     '#type' => 'select',
     '#options' => $opts,
-    '#disabled' => (user_access('administer jaycees users')) ? FALSE : TRUE,
+    '#disabled' => (user_access('administer jaycees users dues')) ? FALSE : TRUE,
   );
   
   $form['jaycees_users']['current'] = array(
@@ -79,10 +79,10 @@ function jaycees_users_dues($form, &$form_state){
     '#type' => 'select',
     '#descriptions' => t('Method of payment'),
     '#options' => $opts,
-    '#disabled' => (user_access('administer jaycees users')) ? FALSE : TRUE,
+    '#disabled' => (user_access('administer jaycees users dues')) ? FALSE : TRUE,
   );
   
-  if(user_access('administer jaycees users')){
+  if(user_access('administer jaycees users dues')){
     $form['submit'] = array(
       '#type' => 'submit',
       '#value' => 'Update Member',
