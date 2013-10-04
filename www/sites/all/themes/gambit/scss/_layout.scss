@@ -5,8 +5,8 @@ body{
   
 #main-content{
   width: 875px;
-  #content-wrapper{
-    padding: 1em;
+  #content-wrapper, #tab-pages{
+    padding: 0 1em;
     float: left;
     }
 }

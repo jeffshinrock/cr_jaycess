@@ -30,7 +30,7 @@
     });  
     
     //tab page carousel
-    $("#tab-pages").flexslider({
+    $("#tab-page-slides").flexslider({
       animation: "slide",
       selector: "#tab-slides > li",
       smoothHeight: true,

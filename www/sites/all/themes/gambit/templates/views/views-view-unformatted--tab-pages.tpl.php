@@ -4,11 +4,15 @@ $slides = '';
 
 $tabs = '';
 
+$i = 0;
+
 foreach ($view->result as $id => $row): 
+
+  $class = ($i == 0) ? "first" : "";
   
   $node = node_load($row->nid);
   
-  $tabs .= '<li>' . $row->node_title . '</li>';
+  $tabs .= '<li class="' . $class . '">' . $row->node_title . '</li>';
   
   if(!empty($node->field_hero_image_full) && !empty($node->field_hero_image_mobile)){
     if(!empty($node->field_hero_image_full)){
@@ -27,23 +31,28 @@ foreach ($view->result as $id => $row):
       $slides .= (!empty($img_full) ? theme_image($img_full) : '');
       $slides .= (!empty($img_mobile) ? theme_image($img_mobile): '');
     $slides .= '</div>';
+    $slides .= '<h1>' . $row->node_title . '</h1>';
     $slides .= $node->body['und'][0]['safe_value'];
   $slides .= '</li>';
+  
+  $i++;
 
 endforeach; 
 
 ?>
 
-<div id="tab-titles-container">
-  <ul id="tab-titles">
-    <?php print $tabs; ?>
-  </ul>
-</div>
-
-<div id="tab-page">
-  <ul id="tab-slides">
-    <?php print $slides; ?>
-  </ul>
+<div id="tab-page-container">
+  <div id="tab-titles-container">
+    <ul id="tab-titles" class="clearfix">
+      <?php print $tabs; ?>
+    </ul>
+  </div>
+  
+  <div id="tab-page-slides">
+    <ul id="tab-slides">
+      <?php print $slides; ?>
+    </ul>
+  </div>
 </div>
 
 
