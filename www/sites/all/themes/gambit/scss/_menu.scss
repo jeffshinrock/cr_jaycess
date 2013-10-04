@@ -6,14 +6,17 @@
     list-style-type: none;
     list-style-image: none;    
     li.leaf{
-      padding: 0 0 0 1em;
+      padding: 0 0 0 0;
+      margin: 0;
       list-style-type: none;
       list-style-image: none;   
       a:link, a:visited, a:hover, a:active{
+        display: block;
         color: $light;
-        font-family: "hero-light";  
+        font-family: "hero_light";  
         font-size: 2em;
         text-decoration: none;  
+        padding: 0 0 0 .5em;
         }
       }
     }

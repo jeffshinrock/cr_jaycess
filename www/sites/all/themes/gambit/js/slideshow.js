@@ -34,6 +34,8 @@
       animation: "slide",
       selector: "#tab-slides > li",
       smoothHeight: true,
+      manualControls: "#tab-titles > li", 
+      directionNav: false,
     });
 
   });

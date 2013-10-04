@@ -1,14 +1,14 @@
-
-
 <?php 
 
 $slides = '';
+
+$tabs = '';
 
 foreach ($view->result as $id => $row): 
   
   $node = node_load($row->nid);
   
-  //dpm($node);
+  $tabs .= '<li>' . $row->node_title . '</li>';
   
   if(!empty($node->field_hero_image_full) && !empty($node->field_hero_image_mobile)){
     if(!empty($node->field_hero_image_full)){
@@ -34,7 +34,13 @@ endforeach;
 
 ?>
 
-<div id="tab-pages">
+<div id="tab-titles-container">
+  <ul id="tab-titles">
+    <?php print $tabs; ?>
+  </ul>
+</div>
+
+<div id="tab-page">
   <ul id="tab-slides">
     <?php print $slides; ?>
   </ul>
