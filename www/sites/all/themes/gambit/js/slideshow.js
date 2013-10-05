@@ -36,6 +36,7 @@
       smoothHeight: true,
       manualControls: "#tab-titles > li", 
       directionNav: false,
+      slideshow: false,
     });
 
   });

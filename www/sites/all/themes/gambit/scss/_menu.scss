@@ -1,15 +1,17 @@
 #main-menu-container{
-  border-bottom: 1px solid $light-trans;
   ul{
     padding: 1em 0;
     margin: 0;
     list-style-type: none;
     list-style-image: none;    
     li.leaf{
+      text-align: center;
       padding: 0 0 0 0;
       margin: 0;
       list-style-type: none;
-      list-style-image: none;   
+      list-style-image: none; 
+      border-bottom: 1px solid #fff;
+      border-bottom: 1px solid rgba(255,255,255,.7);
       a:link, a:visited, a:hover, a:active{
         display: block;
         color: $light;
@@ -22,5 +24,22 @@
         color: #fe7575;
         }
       }
+    li.first.leaf{
+      border-top: 1px solid #fff;
+      border-top: 1px solid rgba(255,255,255,.7);
+      }
     }
   }
+
+@media (min-width: 960px){
+  #main-menu-container{
+    border-bottom: 1px solid $light-trans;
+    ul{
+      li.leaf, li.first.leaf{
+        text-align: left;  
+        border: 0;
+        }
+      }
+    }
+  
+}

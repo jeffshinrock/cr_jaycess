@@ -2,6 +2,7 @@ www/sites/default/default.settings.php
 www/sites/*/files
 www/sites/*/private
 www/sites/default/settings.php
+www/sites/all/themes/gambit/.sass-cache
 
 *.tmp
 *.bak

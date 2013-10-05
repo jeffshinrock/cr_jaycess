@@ -3,13 +3,33 @@ body{
   background: $primary-blue url('../images/back.jpg') no-repeat top center;
   }
   
-#main-content{
-  width: 875px;
-  #content-wrapper, #tab-pages{
-    padding: 0 1em;
-    float: left;
-    width: 97%;
+@media (min-width: 0){  
+  #main-content{
+    width: 100%;
+    #content-wrapper, #tab-pages{
+      padding: 0 2.5%;
+      float: left;
+      width: 95%%;
+      }
+  }
+}
+
+@media (min-width: 960px){
+  #main-content{
+    width: 875px;
+    #content-wrapper, #tab-pages{
+      padding: 0 1em;
+      width: 658px;
+      }
     }
+}
+
+@media (min-width: 1200px){
+  #main-content{
+    #content-wrapper, #tab-pages{
+      width: 848px;
+      }
+  }
 }
   
 #top-bar{
@@ -19,6 +39,7 @@ body{
   background: $primary-grey;
   background: $primary-grey-trans;
   font-size: .8em;
+  text-align: right;
   ul{
     padding-left: 1em;
     li{
@@ -29,14 +50,35 @@ body{
         display: block;
         padding: .3em 1em;
         height: 100%;
+        font-size: 1.2em;
+        margin-bottom: 1em;
         }
       }
     }
-  }
+  }  
   
-#site-wrapper{
-  max-width: 1200px;
-  margin:0 auto;
-  margin-top: 1em;
+@media (min-width: 960px){
+  #top-bar{
+    text-align: left;
+    ul{
+      li{
+        a{
+          font-size: 1em;
+          margin-bottom: 0;
+          }
+        }
+      }
+    }
   
+  #site-wrapper{
+    max-width: 960px;
+    margin:0 auto;
+    margin-top: 1em;
+    }
   }
+
+@media (min-width: 1200px){
+  #site-wrapper{
+    max-width: 1200px;
+    }
+}

@@ -1,26 +1,43 @@
 #right-bar{
   background: $primary-grey;
-  background: $primary-grey-trans;
-  width: 320px;
-  float: right;
-  margin-top: -1em;
-  text-align: center;
-  padding: 2em 0;
-  border-bottom: 1px solid $light;
+  background: $primary-grey-trans; 
   #logo{
-    padding: 0 0 2em 0;
-    border-bottom: 1px solid $light;
-    border-bottom: 1px solid $light-trans;
-    }
-  #menu-container{
-    padding: 1em;
-    border-bottom: 1px solid #fff;
-    border-bottom: 1px solid rgba(255,255,255,.2);  
-      ul{
-        list-style-type: none;
-        li{
-          list-style: none;
-          }
-        }      
+    text-align: center;
     }
   }
+
+@media (min-width: 960px){
+  #right-bar{
+    width: 270px;
+    float: right;
+    margin-top: -1em;
+    text-align: center;
+    padding: 2em 0;
+    border-bottom: 1px solid $light;
+    #logo{
+      text-align: center;
+      padding: 0 0 2em 0;
+      border-bottom: 1px solid $light;
+      border-bottom: 1px solid $light-trans;
+      }
+    #menu-container{
+      padding: 1em;
+      border-bottom: 1px solid #fff;
+      border-bottom: 1px solid rgba(255,255,255,.2);  
+        ul{
+          list-style-type: none;
+          li{
+            list-style: none;
+            }
+          }      
+      }
+    }
+  
+}
+
+@media (min-width: 1200px){
+  #right-bar{
+    width: 320px;
+    }
+}
+

@@ -1,12 +1,12 @@
 #grid{
+  display: none;
   .grid.block{
     float: left;
-    height: 105px;
     overflow: hidden;
     width: 160px;
+    height: 105px;
     background: $accent-blue;
     .grid-block-inner{
-/*       border: 1px solid #fff;     */
       div{
         padding: .5em;
         }
@@ -28,3 +28,23 @@
       }
     }
   }
+  
+@media (min-width: 960px){
+  #grid{
+    display: block;
+    }
+ .grid.block{
+    width: 135px !important;
+    height: 89px !important;
+    .grid-block-inner p{
+      font-size: .8em
+      }
+    } 
+}
+
+@media (min-width: 1200px){
+  .grid.block{
+    width: 160px;
+    height: 105px;
+    }
+}
