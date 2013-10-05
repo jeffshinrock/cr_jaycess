@@ -303,6 +303,9 @@ body {
   text-decoration: none;
   padding: 0 0 0 .5em;
 }
+#main-menu-container ul li.leaf a.active-trail {
+  color: #fe7575;
+}
 
 #right-bar {
   background: #3f3f3f;
