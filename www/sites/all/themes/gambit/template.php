@@ -17,7 +17,7 @@ function gambit_preprocess_node(&$vars){
                     
                     var mapOptions = {
                       center: new google.maps.LatLng(-34.397, 150.644),
-                      zoom: 10,
+                      zoom: 12,
                       mapTypeId: google.maps.MapTypeId.ROADMAP
                     };
                     
@@ -43,10 +43,8 @@ function gambit_preprocess_node(&$vars){
                   }; 
                   
                   google.maps.event.addDomListener(window, "load", initialize);';
-      $css = "#map-canvas{height:500px;width:500px;}";
       drupal_add_js($path,'external');
       drupal_add_js($inline,'inline');
-      drupal_add_css($css,'inline');
       $vars['event_map'] = '<div id="map-canvas"></div>';
     }
   }

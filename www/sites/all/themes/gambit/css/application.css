@@ -152,6 +152,7 @@ body {
 #main-content #content-wrapper, #main-content #tab-pages {
   padding: 0 1em;
   float: left;
+  width: 97%;
 }
 
 #top-bar {
@@ -241,6 +242,32 @@ body {
   color: #fff;
   font-size: .6em;
   text-transform: uppercase;
+}
+
+/* individual event view */
+.event-body .registration {
+  width: 20%;
+}
+.event-body .registration a {
+  text-transform: uppercase;
+  font-size: .8em;
+  border: 1px solid #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.event-body.map {
+  float: left;
+  width: 65%;
+}
+
+.event-map {
+  float: right;
+  width: 30%;
+}
+.event-map #map-canvas {
+  height: 300px;
+  width: 100%;
+  border: 1px solid #474747;
 }
 
 #footer {
