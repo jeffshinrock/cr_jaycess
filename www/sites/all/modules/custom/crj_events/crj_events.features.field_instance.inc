@@ -125,7 +125,7 @@ Ex: Welch Ave Station, Welch Avenue, Ames, IA 50014 ',
     'entity_type' => 'node',
     'field_name' => 'field_event_date',
     'label' => 'Date',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'default_value' => 'now',
       'default_value2' => 'same',
