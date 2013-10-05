@@ -1,0 +1,65 @@
+/* event list styles */
+
+.view-events{
+  .views-row{
+      margin-bottom: 1em;
+      padding-bottom: 1em;
+      background: #fff;
+      background: rgba(255,255,255,.7);
+      border-radius: 2px;
+      color: #474747;
+      padding: .5em;
+      a{
+        color: #c93e3e;
+        }
+      p{
+        color: #474747;
+        }
+      .views-field-field-event-date{
+        font-size: .7em;
+        text-transform: uppercase;
+        padding: 0;
+        border-bottom: 1px solid #474747;
+        margin-bottom: .5em;
+        padding-bottom: .5em;
+        }
+      .views-field-nothing{
+        width: 10%;
+        a{
+          color: #fff;
+          font-size: .6em;
+          text-transform: uppercase;
+          }
+        }
+    }
+  }
+  
+  
+/* individual event view */
+
+.event-body{
+  .registration{
+    width: 20%;
+    a{
+      text-transform: uppercase;
+      font-size: .8em;
+      border: 1px solid #fff;
+      border: 1px solid rgba(255,255,255,.4);
+      }
+    }  
+  }
+
+.event-body.map{
+  float: left;
+  width: 65%;
+  }
+
+.event-map{
+  float: right;
+  width: 30%;
+  #map-canvas{
+    height:300px;
+    width:100%;
+    border: 1px solid #474747;
+  }
+}
