@@ -434,17 +434,16 @@ body {
   #grid {
     display: block;
   }
-
-  .grid.block {
-    width: 135px !important;
-    height: 89px !important;
+  #grid .grid.block {
+    width: 135px;
+    height: 89px;
   }
-  .grid.block .grid-block-inner p {
+  #grid .grid.block .grid-block-inner p {
     font-size: 0.8em;
   }
 }
 @media (min-width: 1200px) {
-  .grid.block {
+  #grid .grid.block {
     width: 160px;
     height: 105px;
   }

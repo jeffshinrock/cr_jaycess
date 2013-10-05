@@ -32,19 +32,21 @@
 @media (min-width: 960px){
   #grid{
     display: block;
+   .grid.block{
+      width: 135px;
+      height: 89px;
+      .grid-block-inner p{
+        font-size: .8em
+        }
+      } 
     }
- .grid.block{
-    width: 135px !important;
-    height: 89px !important;
-    .grid-block-inner p{
-      font-size: .8em
-      }
-    } 
 }
 
 @media (min-width: 1200px){
-  .grid.block{
-    width: 160px;
-    height: 105px;
+  #grid{
+    .grid.block{
+      width: 160px;
+      height: 105px;
+      }
     }
 }
