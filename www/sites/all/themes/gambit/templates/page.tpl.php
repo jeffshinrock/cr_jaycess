@@ -6,8 +6,8 @@
 
 <div id="top-bar">
   <ul>
-    <li><a href="#">Join us</a></li>
-    <li><a href="#">Member Login</a></li>   
+    <li><a href="/user/register">Join us</a></li>
+    <li><a href="/user">Member Login</a></li>   
   </ul>
 </div>
 
