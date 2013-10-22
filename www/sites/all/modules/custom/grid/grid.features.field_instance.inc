@@ -104,6 +104,46 @@ function grid_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-grid_item-field_grid_link'
+  $field_instances['node-grid_item-field_grid_link'] = array(
+    'bundle' => 'grid_item',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'To link this grid item to a page, supple a path here. For internal links, use no leading slash is necessary (ex: node/1234). For external links, begin with protocol (ex: http://www.google.com).',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 3,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_grid_link',
+    'label' => 'Link (optional)',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 5,
+    ),
+  );
+
   // Exported field_instance: 'node-grid_item-field_grid_type'
   $field_instances['node-grid_item-field_grid_type'] = array(
     'bundle' => 'grid_item',
@@ -151,6 +191,8 @@ function grid_field_default_field_instances() {
   t('Grid Image');
   t('Grid Type');
   t('Images will be cropped to 140x140');
+  t('Link (optional)');
+  t('To link this grid item to a page, supple a path here. For internal links, use no leading slash is necessary (ex: node/1234). For external links, begin with protocol (ex: http://www.google.com).');
 
   return $field_instances;
 }

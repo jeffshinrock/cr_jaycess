@@ -252,7 +252,15 @@ function grid_markup($item){
     if(!empty($item->field_grid_image['und'][0]['uri'])){
       $img['path'] = file_create_url($item->field_grid_image['und'][0]['uri']);
       $img['attributes'] = array('class' => 'item');
-      $html .= theme_image($img);
+      if(!empty($item->field_grid_link)){
+        $val = $item->field_grid_link['und'][0]['safe_value'];
+        $link = (strpos($val,'http') !== false) ? $val :'/'.$val;
+        $html .= '<a href="'.$val.'">';
+        $html .= theme_image($img);
+        $html .= '</a>';
+      } else {
+        $html .= theme_image($img);
+      }
     }
   } elseif($item->field_grid_type['und'][0]['value'] == "CTA"){
     $html .= "<div>";
