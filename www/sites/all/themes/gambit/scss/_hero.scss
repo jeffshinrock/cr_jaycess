@@ -5,14 +5,13 @@
     top: 1em;
     width: 100%;
     #hero-inner{
-      max-width: 1200px;
-      width: auto;
+      width: 960px;
       position: relative;
       margin: 0 auto;
       #right-bar{
         background: $primary-grey;
         background: $primary-grey-trans;
-        width: 26%;
+        width: 270px;
         float: right;
         /*margin-right: 17%;*/
         text-align: center;
@@ -37,6 +36,17 @@
       }
     }
   
+}
+
+@media (min-width: 1200px){
+  #hero-container{
+    #hero-inner{
+      width: 1200px;    
+      #right-bar{
+        width: 320px;
+        }
+      }
+    }
 }
   
   
