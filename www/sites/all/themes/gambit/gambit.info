@@ -16,6 +16,12 @@ regions[hero] = Hero
 regions[tab_pages] = Tab Pages
 regions[content] = Content
 
+regions[above_content] = Above Content (Primary Page)
+
+regions[tryptic_left] = Tryptic Left
+regions[tryptic_center] = Tryptic Center
+regions[tryptic_right] = Tryptic Right
+
 regions[footer] = Footer
 
 ; Stylesheets blocked that are not included in application.css

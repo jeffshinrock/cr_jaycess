@@ -1,10 +1,12 @@
 <?php
 
 function gambit_preprocess_page(&$vars){
-  //dpm($vars['node']);
+  // are we dealing with a primary page?
+  $vars['page']['isPrimary'] = (arg(0) == 'node' && $vars['node']->type == 'page') ? 'yes' : 'no';
 }
 
 function gambit_preprocess_node(&$vars){
+
   //dpm($vars);
   if($vars['type'] == 'event'){
     if(!empty($vars['field_include_map']['und'][0]['value'])){

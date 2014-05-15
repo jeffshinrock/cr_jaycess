@@ -61,12 +61,39 @@
         </div> <!-- /.section, /#messages -->
       <?php endif; ?>
       
+      <?php if($page['isPrimary'] && !empty($page['above_content'])): ?>
+        <div class="above-content">
+            <?php print render($page['above_content']); ?>
+        </div>
+      <?php endif; ?>
+      
       <?php if ($page['tab_pages']): ?>
         <div id="tab-pages">
           <div class="section clearfix">
             <?php print render($page['tab_pages']); ?>
           </div>
         </div> <!-- /.section, /#messages -->
+      <?php endif; ?>
+      
+      <!-- tryptics for front page. these will be handled differently on tab pages -->
+      <?php if(drupal_is_front_page() || $page['isPrimary']): ?>
+          <div class="tryptic">
+            <div class="tryptic-left">
+                <?php if(!empty($page['tryptic_left'])): ?>
+                    <?php print render($page['tryptic_left']); ?>                
+                <?php endif; ?>
+            </div>
+            <div class="tryptic-center">
+                <?php if(!empty($page['tryptic_center'])): ?>
+                    <?php print render($page['tryptic_center']); ?>                
+                <?php endif; ?>
+            </div>
+            <div class="tryptic-right">
+                <?php if(!empty($page['tryptic_right'])): ?>
+                    <?php print render($page['tryptic_right']); ?>                
+                <?php endif; ?>
+            </div>
+          </div>
       <?php endif; ?>
       
     </div>

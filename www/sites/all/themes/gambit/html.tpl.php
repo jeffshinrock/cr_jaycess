@@ -12,6 +12,7 @@
   <?php print $scripts; ?>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
   <div id="skip-link">

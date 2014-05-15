@@ -3,7 +3,7 @@
   $is_map = isset($variables['event_map']) ? TRUE : FALSE;
   $map = ($is_map) ? $variables['event_map'] : '';
   $class = ($is_map) ? " map" : '';
-  
+    
 ?>
 
 
