@@ -12,6 +12,22 @@ body{
       width: 95%%;
       }
   }
+  
+  .tryptic{
+      float: left;
+      width: 100%;
+      padding: 1em 0 0 0;
+      margin: 1em 0 0 0;
+      border-top: 1px solid $primary-light;
+      border-top: 1px solid $primary-light-trans;
+      .container{
+          width: 33%;
+          float: left;
+          .block{
+              padding: 0 1em;
+          }
+      }
+  }
 }
 
 @media (min-width: 960px){

@@ -2,7 +2,7 @@
 
 function gambit_preprocess_page(&$vars){
   // are we dealing with a primary page?
-  $vars['page']['isPrimary'] = (arg(0) == 'node' && $vars['node']->type == 'page') ? 'yes' : 'no';
+  $vars['page']['isPrimary'] = (arg(0) == 'node' && !empty($vars['node']) && $vars['node']->type == 'page') ? 'yes' : 'no';
 }
 
 function gambit_preprocess_node(&$vars){
