@@ -27,7 +27,7 @@ body{
               padding: 0 1em;
           }
       }
-  }
+   }
 }
 
 @media (min-width: 960px){
@@ -47,6 +47,15 @@ body{
       }
   }
 }
+
+.front{
+  #main-content{ 
+    width: 100%;
+    #content-wrapper, #tabs{
+      width: 100%;  
+      }
+    }
+  }
   
 #top-bar{
   top: 0;

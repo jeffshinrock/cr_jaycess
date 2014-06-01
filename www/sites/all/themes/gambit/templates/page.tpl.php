@@ -20,7 +20,7 @@
 <?php endif; ?>
 
 <div id="site-wrapper" class="clearfix">
-  <div id="container">
+  <div id="container" class="clearfix">
   
   <?php if(!drupal_is_front_page()): ?>
     <div id="right-bar">
