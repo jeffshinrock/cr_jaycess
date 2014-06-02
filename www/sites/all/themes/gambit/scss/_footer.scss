@@ -6,4 +6,20 @@
     max-width: 1200px;
     margin: 0 auto;
     }
+    
+  ul.menu{
+    padding: 1em 0 0 0;
+    border-top: 1px solid $light-trans;
+    margin: 1em 0 0 0;
+    li{
+      list-style-type: none;
+      list-style-image: none;
+      padding-right: 1em;
+      margin: 0;
+      display: inline-block;
+      font-family: 'Varela', sans-serif;
+      text-transform: uppercase;
+      font-size: .7em;
+      }
+    }  
   }
